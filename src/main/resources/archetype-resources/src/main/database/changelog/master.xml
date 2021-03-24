@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.0.xsd
+        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+   <!-- include the change set in each sub-folder  -->
+   <!-- Non-Replaceable Objects -->
+   <include file="src/main/database/changelog/install_changelog.xml" />
+
+   <!-- Replaceable objects -->
+   <include file="src/main/database/changelog/latest_changelog.xml" />
+   
+   <!-- Import seeded data or patch data -->
+   <include file="src/main/database/changelog/data_changelog.xml" />  
+   
+   <!-- post-built -->
+   <include file="src/main/database/changelog/post_build_changelog.xml" />  
+</databaseChangeLog>

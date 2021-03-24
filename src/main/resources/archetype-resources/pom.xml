@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>${groupId}</groupId>
+  <artifactId>${artifactId}</artifactId>
+  <version>${version}</version>
+
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <!-- Change to your db url -->
+    <database.url>jdbc:oracle:thin:@xe.local.me:1521:xe</database.url>
+    <!-- Change to your username -->
+    <database.username>cyutim</database.username>
+    <!-- Change to your password -->
+    <database.password>welcome</database.password>
+    <!-- Change to your Apex workspace -->
+    <apex.workspace>cyutim</apex.workspace>
+    <!-- Should be the existing app id in the target workspace -->
+    <apex.parsing.schema>CYUTIM</apex.parsing.schema>
+    <!-- Change to your application id -->
+    <apex.app.id>105</apex.app.id>
+    <!-- Change to your hostname -->
+    <hostname>xe.local.me</hostname>
+  </properties>
+
+    <build>
+    <plugins>
+        <plugin>
+          <!-- Liquibase plugin 
+                Require the ojdbc plugin
+          -->
+
+            <groupId>org.liquibase</groupId>
+            <artifactId>liquibase-maven-plugin</artifactId>
+            <version>3.4.2</version>
+
+            <dependencies>
+                <dependency>
+                    <groupId>com.oracle</groupId>
+                    <artifactId>ojdbc6</artifactId>
+                    <version>11.2.0</version>
+                </dependency>
+            </dependencies>
+            
+            <configuration>
+                <driver>oracle.jdbc.driver.OracleDriver</driver>
+                <url>${database.url}</url>
+                <username>${database.username}</username>
+                <password>${database.password}</password>
+                <changeLogFile>src/main/database/changelog/master.xml</changeLogFile>
+                <promptOnNonLocalDatabase>false</promptOnNonLocalDatabase>
+                <verbose>false</verbose>
+            </configuration>
+        </plugin>
+
+        <plugin>
+          <!-- Use this plugin to import the apex application to the database and generating the db documents -->
+          <!-- Download from https://github.com/hychen39/orclapex-maven-plugin.git -->
+            <groupId>com.contribute</groupId>
+            <artifactId>orclapex-maven-plugin</artifactId>
+            <version>1.0.4.1</version>
+
+           <configuration>
+            <!-- NaturalDocs 2.x -->
+                <naturalDocsHome>C:\NaturalDocs</naturalDocsHome>
+                <naturalDocExe>C:\NaturalDocs\NaturalDocs.exe</naturalDocExe>
+                <configFolder>D:\apex_prj\im_space_mgt_sys_maven\natural_doc_config</configFolder>
+                <!--<inputSourceDirectories>-->
+                <!--<inputSourceDirectory>D:\apex_prj\im_space_mgt_sys_maven\src\main\database</inputSourceDirectory>-->
+                <!--</inputSourceDirectories>-->
+                <!--<outputFormat>FramedHTML</outputFormat>-->
+                <!--<outputDirectory>src/main/database/technical-docs</outputDirectory>-->
+                <!--<projectDirectory>src/main/database/technical-docs/settings</projectDirectory>-->
+                <rebuild>true</rebuild>
+
+                 <!-- Need to define the tns name in the tnsnames.ora -->
+                 <connectionString>xe</connectionString>
+                 <username>${database.username}</username>
+                 <password>${database.password}</password>
+                 <appExportLocation>src/main/apex</appExportLocation>
+                 <workspaceName>${apex.workspase}</workspaceName>
+                 <!-- the parsing schema name should be in captial -->
+                 <appParsingSchema>${apex.parsing.schema}</appParsingSchema>
+                 <!-- Should be the existing app id in the target workspace -->
+                 <appId>${apex.app.id}</appId>
+            </configuration>
+        </plugin>  
+        <!-- end the orclapex-maven-plugin -->
+
+        <!-- Start of the maven-antrun-plugin -->
+        <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-antrun-plugin</artifactId>
+            <version>1.7</version>
+
+            <dependencies>
+                <dependency>
+                    <groupId>org.apache.ant</groupId>
+                    <artifactId>ant-jsch</artifactId>
+                    <version>1.9.4</version>
+                </dependency>
+            </dependencies>
+        </plugin>
+    </plugins>
+</build>
+</project>
