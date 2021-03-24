@@ -11,39 +11,38 @@
   <name>Archetype - mvn-liquibase-archetype</name>
 
   <inceptionYear>2021</inceptionYear>
+  <!-- FIXME change it to the project's website -->
+  <url>https://github.com/hychen39/mvn-liquibase-archetype</url>
 
   <description>
     使用 Maven 的 archetype Plugin 自動產生 Apex-Liquibase 專案需要的工作目錄。
     本計劃由 LogiCorner 公司委託執行。 
-</description>
+  </description>
 
-<organization>
-  <name>邏輯方隅資訊科技 LogiCorner Info.Tech.</name>
-  <url>http://www.logicorner.com/</url>
-</organization>
+  <organization>
+    <name>邏輯方隅資訊科技 LogiCorner Info.Tech.</name>
+    <url>http://www.logicorner.com/</url>
+  </organization>
 
-<developers>
-  <developer>
-    <id>hychen39</id>
-    <email>hychen39@gmail.com</email>
-    <url>https://www.cyut.edu.tw/~hychen39</url>
-    <organization>Department of Information Management, CYUT, Taiwan</organization>
-    <organizationUrl>http://webim.cyut.edu.tw/</organizationUrl>
-    <timezone>Asia/Taipei</timezone>
-</developer>
-  <developer>
+  <developers>
+    <developer>
+      <id>hychen39</id>
+      <email>hychen39@gmail.com</email>
+      <url>https://www.cyut.edu.tw/~hychen39</url>
+      <organization>Department of Information Management, CYUT, Taiwan</organization>
+      <organizationUrl>http://webim.cyut.edu.tw/</organizationUrl>
+      <timezone>Asia/Taipei</timezone>
+    </developer>
+    <developer>
       <id>vincent.cheng</id>
       <email>vincent.cheng@logicorner.com</email>
       <organization>邏輯方隅資訊科技 LogiCorner Info.Tech.</organization>
       <organizationUrl>http://www.logicorner.com/</organizationUrl>
       <timezone>Asia/Taipei</timezone>
-  </developer>
-  
-</developers>
+    </developer>
 
+  </developers>
 
-  <!-- FIXME change it to the project's website -->
-  <!-- <url>http://www.example.com</url> -->
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
